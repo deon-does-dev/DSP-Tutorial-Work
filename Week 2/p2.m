@@ -75,3 +75,9 @@ reversed = flipud(sig);
 % versa for the new variables 2nd column
 swapped_sig = [sig(:, 2), sig(:, 1)];
 
+% ====================================
+% 9. Sum to mono
+% ====================================
+
+% average two channels together
+mono = (sig (:, 1) + sig(:, 2)) / 2;
