@@ -42,14 +42,24 @@ grid on;
 % 2. Mix 2 different freq. together
 % ====================================
 
-fs = 48000;
-
 % generate 2 signals
 [sig1, t] = generate_sinusoid(fs, 0.5, 440, 0, 1);
 [sig2, t] = generate_sinusoid(fs, 0.5, 660, 0, 1); 
 
 % mix both signals together
 mixed_signal = sig1 + sig2; 
+
+% ====================================
+% 3. Concatenate signals to make tune
+% ====================================
+
+% create tune (middle C, D then E)
+[note1, ~] = generate_sinusoid(fs, 0.8, 261.63, 0, 0.5);
+[note2, ~] = generate_sinusoid(fs, 0.8, 293.66, 0, 0.5);
+[note3, ~] = generate_sinusoid(fs, 0.8, 329.63, 0, 0.5);
+
+% append to list tune
+tune = [note1, note2, note3];
 
 % Function from generate_sinusoid.m in class materials
 
