@@ -59,3 +59,10 @@ fade_out = linspace(1, 0, length(sig))';
 % apply fades to signal
 fade_in_sig = sig .* fade_in;
 fade_out_sig = fade_in_sig .* fade_out;
+
+% ====================================
+% 7. Reverse sample
+% ====================================
+
+% flip the column vector
+reversed = flipud(sig);
