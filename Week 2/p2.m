@@ -4,14 +4,14 @@
 % import audio data as a 2D array
 [sig, fs] = audioread("handel.wav");
 
-samples = size(sig, 1);      % count no. of rows 
-channels = size(sig, 2);     % count no. of columns
+samples = size(sig, 1);             % count no. of rows 
+channels = size(sig, 2);            % count no. of columns
 
 % no. of samples / sampling frequency = duration
 duration = samples/fs;
 
 % calculate length of sample
-t = (0:(samples - 1)) * (1/fs); % time = no. of samples * duration of 1 sample
+t = (0:(samples - 1)) * (1/fs);     % time = no. of samples * duration of 1 sample
 
 % ====================================
 % 1. Plot waveform of a signal
@@ -38,5 +38,12 @@ offset = sig + 0.1;
 % 4. Normalise signal to peak at 1
 % ====================================
 
-peak = max(abs(sig(:)));        % find max value across all channels
+peak = max(abs(sig(:)));            % find max value across all channels
 peak_norm_sig = sig / peak;
+
+% ====================================
+% 5. Normalise to RMS amp of .5
+% ====================================
+
+rms = rms(sig(:));                  % calculate current RMS value
+rms_norm_sig = sig * (0.5 / rms);
