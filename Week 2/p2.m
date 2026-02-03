@@ -105,4 +105,28 @@ mixed_sample = sample1_padded + sample2_padded;
 % normalise to prevent clipping
 mixed_sample = mixed_sample / max(abs(mixed_sample));
 
-sound(mixed_sample, fs2);
+%sound(mixed_sample, fs2);
+
+% ====================================
+% 11. Remix by cutting & reordering 
+% ====================================
+
+% fetch 3 chunks of 0.2 seconds 
+start1 = 1;
+end1 = round(5.2 * fs);
+
+start2 = end1 + 300;
+end2 = start2 + round(5.2 * fs);
+
+start3 = end2 + 300;
+end3 = start3 + round(5.2 * fs);
+
+% extract audio
+part1 = sig(start1:end1, :);
+part2 = sig(start2:end2, :);
+part3 = sig(start3:end3, :);
+
+% remix
+remix = [part3; part1; part2; part1; part3];
+
+sound(remix, fs);
