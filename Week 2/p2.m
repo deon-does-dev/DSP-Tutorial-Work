@@ -13,3 +13,11 @@ duration = samples/fs;
 % calculate length of sample
 t = (0:(samples - 1)) * (1/fs); % time = no. of samples * duration of 1 sample
 
+% ====================================
+% 1. Plot waveform of a signal
+% ====================================
+
+figure(1);
+plot(t, sig);
+ylim([-1, 1]);
+xlabel("Time (s)");
