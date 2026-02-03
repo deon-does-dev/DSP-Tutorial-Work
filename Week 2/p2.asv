@@ -2,7 +2,7 @@
 % point to load your own audio files. 
 
 % import audio data as a 2D array
-[sig, fs] = audioread("handel.wav");
+[sig, fs] = audioread("skepta_stereo.wav");
 
 samples = size(sig, 1);             % count no. of rows 
 channels = size(sig, 2);            % count no. of columns
@@ -45,20 +45,20 @@ peak_norm = sig / peak;
 % 5. Normalise to RMS amp of .5
 % ====================================
 
-rms = rms(sig(:));                  % calculate current RMS value
-rms_norm = sig * (0.5 / rms);
+rms_sample = rms(sig(:));           % calculate current RMS value
+rms_norm = sig * (0.5 / rms_sample);
 
 % ====================================
 % 6. Add fades to sample with linspace
 % ====================================
 
-% create fade using linspace over signal length
+% create fade using linspace over sample length
 fade_in = linspace(0, 1, length(sig))';
 fade_out = linspace(1, 0, length(sig))';
 
-% apply fades to signal
-fade_in_sig = sig .* fade_in;
-fade_out_sig = fade_in_sig .* fade_out;
+% apply both fades to sample
+fade_in_sample = sig .* fade_in;
+fade_out_sample = fade_in_sample .* fade_out;
 
 % ====================================
 % 7. Reverse sample
@@ -80,3 +80,25 @@ swapped = [sig(:, 2), sig(:, 1)];
 
 % average two channels together
 mono = (sig (:, 1) + sig(:, 2)) / 2;
+
+% ====================================
+% 10. Load multiple samples & mix
+% ====================================
+
+% load additional audio files
+[sig2, fs2] = audioread("handel.wav");
+
+% find maximum length of each sample, and pad shorter sample with 0s
+max_len = max(length(sig), length(sig2));
+
+pad1 = zeros(max_len - len1, 1);
+pad2 = zeros(max_len - len2, 1);
+
+sample1_padded = [sig; pad1];
+sample2_padded = [sig2; pad2];
+
+% sum both samples together
+mixed_sample = sample1_padded + sample2_padded;
+
+% normalise to prevent clipping
+mixed

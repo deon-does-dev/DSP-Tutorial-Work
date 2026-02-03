@@ -80,3 +80,29 @@ swapped = [sig(:, 2), sig(:, 1)];
 
 % average two channels together
 mono = (sig (:, 1) + sig(:, 2)) / 2;
+
+% ====================================
+% 10. Load multiple samples & mix
+% ====================================
+
+% load additional audio file
+[sig2, fs2] = audioread("lexapro_stereo.wav");
+
+mono2 = (sig2(:, 1) + sig2(:, 2)) / 2;
+
+% find maximum length of each sample, and pad shorter sample with 0s
+max_len = max(length(mono), length(mono2));
+
+pad1 = zeros(max_len - length(mono), 1);
+pad2 = zeros(max_len - length(mono2), 1);
+
+sample1_padded = [mono; pad1];
+sample2_padded = [mono2; pad2];
+
+% sum both samples together
+mixed_sample = sample1_padded + sample2_padded;
+
+% normalise to prevent clipping
+mixed_sample = mixed_sample / max(abs(mixed_sample));
+
+sound(mixed_sample, fs2);
