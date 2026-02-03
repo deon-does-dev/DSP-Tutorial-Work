@@ -42,6 +42,9 @@ grid on;
 % 2. Mix 2 different freq. together
 % ====================================
 
+% set new, higher sampling frequency 
+fs = 48000;
+
 % generate 2 signals
 [sig1, t] = generate_sinusoid(fs, 0.5, 440, 0, 1);
 [sig2, t] = generate_sinusoid(fs, 0.5, 660, 0, 1); 
@@ -60,6 +63,20 @@ mixed_signal = sig1 + sig2;
 
 % append to list tune
 tune = [note1, note2, note3];
+
+% ====================================
+% 4. Generate binaural beats
+% ====================================
+
+% generate 2 signals of slightly different frequencies 
+[left_channel, ~] = generate_sinusoid(fs, 0.8, 200, 0, 5);
+[right_channel, t] = generate_sinusoid(fs, 0.8, 205, 0, 5);
+
+% combine into a 2-column matrix 
+binaural = [left_channel', right_channel'];
+
+% play it back
+sound(binaural, fs);
 
 % Function from generate_sinusoid.m in class materials
 
