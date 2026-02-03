@@ -1,0 +1,16 @@
+% ====================================
+% 1. Investigate effects of aliasing
+% ====================================
+
+fs = 100;       % low sampling frequency 
+dur = 0.2;      % short duration
+amp = 0.5;
+
+% generate frequency below nyquist limit
+freq1 = 10;
+[sig1, t1] = generate_sinusoid(fs, amp, freq1, 0, dur);
+
+freq2 = 90;
+[sig2, t2] = generate_sinusoid(fs, amp, freq2, 0, dur);
+
+figure(1);

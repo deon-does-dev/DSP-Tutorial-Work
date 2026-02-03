@@ -111,14 +111,14 @@ mixed_sample = mixed_sample / max(abs(mixed_sample));
 % 11. Remix by cutting & reordering 
 % ====================================
 
-% fetch 3 chunks of 0.2 seconds 
+% fetch 3 random chunks of 5.2 seconds in length
 start1 = 1;
 end1 = round(5.2 * fs);
 
-start2 = end1 + 300;
+start2 = 20 * fs;
 end2 = start2 + round(5.2 * fs);
 
-start3 = end2 + 300;
+start3 = 160 * fs;
 end3 = start3 + round(5.2 * fs);
 
 % extract audio
