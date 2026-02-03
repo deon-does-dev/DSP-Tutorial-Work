@@ -2,7 +2,7 @@
 % point to load your own audio files. 
 
 % import audio data as a 2D array
-[sig, fs] = audioread("handel.wav");
+[sig, fs] = audioread("skepta_stereo.wav");
 
 samples = size(sig, 1);             % count no. of rows 
 channels = size(sig, 2);            % count no. of columns
@@ -45,8 +45,8 @@ peak_norm = sig / peak;
 % 5. Normalise to RMS amp of .5
 % ====================================
 
-rms = rms(sig(:));                  % calculate current RMS value
-rms_norm = sig * (0.5 / rms);
+rms_sample = rms(sig(:));                  % calculate current RMS value
+rms_norm = sig * (0.5 / rms_sample);
 
 % ====================================
 % 6. Add fades to sample with linspace
@@ -58,7 +58,7 @@ fade_out = linspace(1, 0, length(sig))';
 
 % apply both fades to sample
 fade_in_sample = sig .* fade_in;
-fade_out_sample = fade_in_sig .* fade_out;
+fade_out_sample = fade_in_sample .* fade_out;
 
 % ====================================
 % 7. Reverse sample
