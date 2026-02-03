@@ -39,26 +39,26 @@ offset = sig + 0.1;
 % ====================================
 
 peak = max(abs(sig(:)));            % find max value across all channels
-peak_norm_sig = sig / peak;
+peak_norm = sig / peak;
 
 % ====================================
 % 5. Normalise to RMS amp of .5
 % ====================================
 
 rms = rms(sig(:));                  % calculate current RMS value
-rms_norm_sig = sig * (0.5 / rms);
+rms_norm = sig * (0.5 / rms);
 
 % ====================================
 % 6. Add fades to sample with linspace
 % ====================================
 
-% create fade using linspace over signal length
+% create fade using linspace over sample length
 fade_in = linspace(0, 1, length(sig))';
 fade_out = linspace(1, 0, length(sig))';
 
-% apply fades to signal
-fade_in_sig = sig .* fade_in;
-fade_out_sig = fade_in_sig .* fade_out;
+% apply both fades to sample
+fade_in_sample = sig .* fade_in;
+fade_out_sample = fade_in_sig .* fade_out;
 
 % ====================================
 % 7. Reverse sample
@@ -71,9 +71,8 @@ reversed = flipud(sig);
 % 8. Swap channels
 % ====================================
 
-% create new variable, column 1 takes the signal's 2nd column and vice
-% versa for the new variables 2nd column
-swapped_sig = [sig(:, 2), sig(:, 1)];
+% column 1 takes the signal's 2nd column and vice versa for other column
+swapped = [sig(:, 2), sig(:, 1)];
 
 % ====================================
 % 9. Sum to mono
