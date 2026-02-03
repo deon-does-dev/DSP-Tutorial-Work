@@ -38,6 +38,21 @@ title((fs/4) * 3 + " Hz Signal (Sampled at " + fs + " Hz)");
 xlabel("Time (s)");
 grid on;
 
+% ====================================
+% 2. Mix 2 different freq. together
+% ====================================
+
+fs = 48000;
+
+% generate 2 signals
+[sig1, t] = generate_sinusoid(fs, 0.5, 440, 0, 1);
+[sig2, t] = generate_sinusoid(fs, 0.5, 660, 0, 1); 
+
+% mix both signals together
+mixed_signal = sig1 + sig2; 
+
+% Function from generate_sinusoid.m in class materials
+
 function [sig, t] = generate_sinusoid(fs, A, freq, phase, dur)
   ts = 1/fs; % calculate the sampling period
   t = 0:ts:(dur - ts); % generate sample times
