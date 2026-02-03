@@ -1,0 +1,32 @@
+% Look at import_wav.m (in Class Materials), and use this as a starting
+% point to load your own audio files. 
+
+% import audio data as a 2D array
+[sig, fs] = audioread("handel.wav");
+
+samples = dims(size(sig));      % count no. of rows 
+channels = dims(size(sig));     % count no. of columns
+
+% no. of samples / sampling frequency = duration
+duration = samples/fs;
+
+% calculate length of sample
+t = (0:(samples - 1)) * (1/fs); % time = no. of samples * duration of 1 sample
+
+% plot signal against time stamps
+figure(1);
+plot(t, sig);
+ylim([-1, 1]);
+xlabel("Time (s)");
+
+% plot each channel separately
+figure(2);
+
+for i = i:channels              % loop for every audio channel
+    subplot(channels, 1, i);
+    plot(t, sig(:, i));
+    ylim([-1, 1]);
+    ylabel(sprintf("Channel %d", i));
+    xlabel("Time (S)");
+end
+
