@@ -45,7 +45,7 @@ peak_norm = sig / peak;
 % 5. Normalise to RMS amp of .5
 % ====================================
 
-rms_sample = rms(sig(:));                  % calculate current RMS value
+rms_sample = rms(sig(:));           % calculate current RMS value
 rms_norm = sig * (0.5 / rms_sample);
 
 % ====================================
