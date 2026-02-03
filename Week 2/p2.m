@@ -33,3 +33,10 @@ gain = sig * 0.5;
 % ====================================
 
 offset = sig + 0.1;
+
+% ====================================
+% 4. Normalise signal to peak at 1
+% ====================================
+
+peak = max(abs(sig(:)));        % find max value across all channels
+peak_norm_sig = sig / peak;
