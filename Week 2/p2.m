@@ -66,3 +66,12 @@ fade_out_sig = fade_in_sig .* fade_out;
 
 % flip the column vector
 reversed = flipud(sig);
+
+% ====================================
+% 8. Swap channels
+% ====================================
+
+% create new variable, column 1 takes the signal's 2nd column and vice
+% versa for the new variables 2nd column
+swapped_sig = [sig(:, 2), sig(:, 1)];
+
