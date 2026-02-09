@@ -1,0 +1,15 @@
+# MATLAB autosave / backup
+*.asv
+*.m~
+*.autosave
+
+# Simulink
+slprj/
+sccprj/
+*.slxc
+
+# MATLAB code gen.
+codegen/
+
+# macOS folder metadata 
+.DS_Store
