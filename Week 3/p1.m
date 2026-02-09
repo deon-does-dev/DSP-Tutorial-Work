@@ -1,4 +1,4 @@
-[sig, fs] = audioread("pluck.wav");
+[sig, fs] = audioread("Class Materials/pluck.wav");
 
 delay_time = 250;   % delay in ms
 attenuation = 0.6;  % strength of echo
