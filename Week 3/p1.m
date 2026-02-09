@@ -32,3 +32,27 @@ title("Echo Effect");
 xlabel("Time (S)");
 ylabel("Amplitude");
 grid on;
+
+% ====================================
+% WITHOUT USING CONV FUNCTION
+% ====================================
+
+% pad dry signal with 0s
+dry_signal = [sig; zeros(delay_samples, 1)];
+
+% create wet signal
+wet_signal = [zeros(delay_samples, 1); sig] * attenuation;
+
+% combine dry and wet signals
+output_signal = dry_signal + wet_signal;
+
+% time vector based on sampling frequency
+t = (0:length(y) - 1) / fs;
+
+% plot echo
+figure(2);
+plot(t, y);
+title("Echo Effect (without conv)");
+xlabel("Time (S)");
+ylabel("Amplitude");
+grid on;
