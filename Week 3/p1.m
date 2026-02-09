@@ -48,8 +48,35 @@ output_signal = dry_signal + wet_signal;
 
 % plot echo
 figure(2);
-plot(t, y);
+plot(t, output_signal);
 title("Echo Effect (without conv)");
 xlabel("Time (S)");
 ylabel("Amplitude");
 grid on;
+
+% ====================================
+% WITH LOOPS
+% ====================================
+
+% construct impulse response (partly uses previous code here)
+ir = zeros(delay_samples + 1, 1); 
+ir(1) = 1;
+ir(end) = attenuation;
+
+% initialise output
+N = length(sig);
+M = length(ir);
+y_manual = zeros(N + M - 1, 1);
+
+% manual convolution loop (very slow)
+for n = 1:length(y_manual)
+    for k = 1:M
+        if (n-k+1) > 0 && (n-k+1) <= N
+            y_manual(n) = y_manual(n) + sig(n-k+1) * ir(k);
+        end
+    end
+end
+
+% plot echo
+figure(3);
+plot(y_manual);
