@@ -46,9 +46,6 @@ wet_signal = [zeros(delay_samples, 1); sig] * attenuation;
 % combine dry and wet signals
 output_signal = dry_signal + wet_signal;
 
-% time vector based on sampling frequency
-t = (0:length(y) - 1) / fs;
-
 % plot echo
 figure(2);
 plot(t, y);
